@@ -1,0 +1,176 @@
+// Example program
+#include <iostream>
+#include <string>
+#include<vector>
+
+using namespace std;
+
+void display_menu();
+char get_selection();
+
+void handle_display(const vector<int> &v);
+void handle_add(vector<int> &v);
+void handle_mean(const vector<int> &v);
+void handle_smallest(const vector<int> &v);
+void handle_largest(const vector<int> &v);
+void handle_quit();
+void handle_unknown();
+
+void display_list(const vector<int> &v);
+void get_smallest(const vector<int> &v);
+void get_largest(const vector<int> &v);
+
+
+
+
+
+int main()
+{ 
+    vector<int> numbers;
+    char selection{};
+    
+    do{
+        display_menu();
+        selection = get_selection();
+        switch (selection){
+            case'P':
+            handle_display(numbers);
+            break;
+            case'A':
+            handle_add(numbers);
+            break;
+            case'M':
+            handle_mean(numbers);
+            break;
+            case'S':
+            handle_smallest(numbers);
+            break;
+            case'L':
+            handle_largest(numbers);
+            break;
+            case'Q':
+            handle_quit();
+            break;
+            default:
+            handle_unknown();
+            
+            
+            }
+            
+}while (selection != 'Q');
+ cout << endl;
+ return 0;
+    
+}
+
+void display_menu(){
+    cout << "\n P-Print numbers " << endl;
+    cout << " A- add a number " << endl;
+    cout << " M- display mean of the numbers" << endl;
+    cout << " S- display the smallest number" << endl;
+    cout << " L- display the largest number " << endl;
+    cout << " Q- Quit " << endl;
+    cout << " \n Enter you choice " << endl;
+    
+}
+
+char get_selection(){
+    char selection{};
+    cin >> selection;
+    return toupper(selection);
+    
+}
+
+void display_list(const vector<int> &v){
+    cout << " [ " ;
+    for( auto num: v)
+       cout << num << " " ;
+       
+    cout << " ] " << endl;
+    
+}
+
+void handle_display(const vector<int> &v){
+    if (v.size() == 0)
+    cout << " The vector list is empty " << endl;
+    else 
+    display_list(v);
+    }
+    
+
+    
+void handle_add( vector<int> &v){
+      int num_to_add;
+      cin >> num_to_add;
+      v.push_back(num_to_add);
+      cout << num_to_add << " added " << endl;
+      
+      
+
+}
+
+void calculate_mean(const vector<int> &v){
+int total{};
+for(auto num:v)
+     total += num;
+     
+return static_cast<double> (total)/v.size();
+
+}
+
+void handle_mean(const vector<int> &v){
+if(v.size()==0)
+cout << " Empty vector mean cannot be calculated " << endl;
+else 
+cout << " The mean comes out to be " << calculate_mean(v) << endl;
+
+}
+
+void get_smallest(const vector<int> &v){
+smallest = v.at(0);
+for(auto num:v)
+   if (num < smallest)
+   smallest = num;
+ return smallest;
+}
+
+    
+void handle_smallest(const vector<int> &v){
+if(v.size()==0)
+     cout << " smallest number in empty vector cannot be find " << endl;
+else 
+    cout << " smallest no. comes out to be " << get_smallest(v) << endl;
+    
+}    
+    
+void get_largest(const vector<int> &v){
+largest = v.at(0);
+for(auto num:v)
+   if (num > largest)
+   largest = num;
+ return largest;
+}
+
+void handle_largest(const vector<int> &v){
+if(v.size()==0)
+     cout << " largest number in empty vector cannot be find " << endl;
+else 
+    cout << " largest no. comes out to be " << get_largest(v) << endl;
+    
+}    
+    
+
+
+
+
+
+void handle_quit(){
+  cout << " Goodbye " << endl;
+  
+}
+
+void handle_unknown(){
+   cout << " Unknwon character- Try again " << endl;
+}
+
+
